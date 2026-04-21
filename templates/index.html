@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节气奥德赛 - 二十四节气文化探索之旅</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- 开始界面 -->
+        <div id="start-screen" class="screen active">
+            <div class="hand-drawn-border">
+                <h1 class="main-title">🌿 节气奥德赛 🌿</h1>
+                <p class="subtitle">二十四节气文化探索之旅</p>
+                <div class="decoration">
+                    <span class="flower">🌸</span>
+                    <span class="flower">🌺</span>
+                    <span class="flower">🌻</span>
+                    <span class="flower">🌼</span>
+                    <span class="flower">🌹</span>
+                </div>
+                <div class="story-text">
+                    <p>在时光长河中，二十四节气承载着中华民族的智慧与记忆...</p>
+                    <p>踏上这场奇幻探索之旅，揭开古老文化的神秘面纱！</p>
+                </div>
+                <button id="start-btn" class="btn-primary hand-drawn-btn">
+                    ✨ 开始探索 ✨
+                </button>
+            </div>
+        </div>
+
+        <!-- 难度选择界面 -->
+        <div id="difficulty-screen" class="screen">
+            <div class="hand-drawn-border">
+                <h2 class="section-title">📜 选择探索难度</h2>
+                <p class="subtitle">选择适合你的挑战等级</p>
+                <div class="difficulty-container">
+                    <div class="difficulty-card hand-drawn-card" data-difficulty="easy">
+                        <div class="difficulty-icon">🌱</div>
+                        <h3>简单</h3>
+                        <p class="description">适合初次探索者</p>
+                        <p class="detail">基础物候知识 · 简单民俗匹配 · 经典诗词填空</p>
+                        <div class="medal-preview">
+                            <span class="medal-icon" style="background: #cd7f32;">🏅</span>
+                            <span>青铜探索者</span>
+                        </div>
+                    </div>
+                    
+                    <div class="difficulty-card hand-drawn-card" data-difficulty="medium">
+                        <div class="difficulty-icon">🌳</div>
+                        <h3>难度升级</h3>
+                        <p class="description">适合有基础的探索者</p>
+                        <p class="detail">深入物候知识 · 更多民俗匹配 · 复杂诗词填空</p>
+                        <div class="medal-preview">
+                            <span class="medal-icon" style="background: #c0c0c0;">🏅</span>
+                            <span>白银守护者</span>
+                        </div>
+                    </div>
+                    
+                    <div class="difficulty-card hand-drawn-card" data-difficulty="hard">
+                        <div class="difficulty-icon">🌲</div>
+                        <h3>超级难</h3>
+                        <p class="description">适合文化传承者</p>
+                        <p class="detail">深度物候知识 · 全面民俗匹配 · 复杂诗词挑战</p>
+                        <div class="medal-preview">
+                            <span class="medal-icon" style="background: #ffd700;">🏅</span>
+                            <span>黄金传承人</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-info">
+                    <h3>📊 我的探索进度</h3>
+                    <div id="medals-display" class="medals-display">
+                        <!-- 已获得勋章将动态显示 -->
+                    </div>
+                </div>
+                
+                <button id="back-to-start" class="btn-secondary hand-drawn-btn">
+                    ← 返回
+                </button>
+            </div>
+        </div>
+
+        <!-- 游戏主场景 -->
+        <div id="game-screen" class="screen">
+            <!-- 顶部状态栏 -->
+            <div class="game-header">
+                <div class="status-bar">
+                    <div class="difficulty-badge" id="current-difficulty">简单</div>
+                    <div class="level-indicator">
+                        <span>关卡</span>
+                        <span id="current-level">1</span>
+                        <span>/3</span>
+                    </div>
+                    <div class="score-display">
+                        <span>🌟 文化灵识: </span>
+                        <span id="culture-score">0</span>
+                    </div>
+                </div>
+                <button id="exit-game" class="btn-small">
+                    🏠 返回主菜单
+                </button>
+            </div>
+
+            <!-- 2.5D场景容器 -->
+            <div id="scene-container" class="scene-container">
+                <!-- 场景背景 -->
+                <div class="scene-background">
+                    <!-- 手绘风格的2.5D场景元素 -->
+                    <div class="mountain mountain-far"></div>
+                    <div class="mountain mountain-near"></div>
+                    <div class="cloud cloud-1">☁️</div>
+                    <div class="cloud cloud-2">☁️</div>
+                    <div class="sun">☀️</div>
+                    <div class="river"></div>
+                    <div class="trees">
+                        <span class="tree">🌳</span>
+                        <span class="tree">🌲</span>
+                        <span class="tree">🌴</span>
+                        <span class="tree">🌳</span>
+                        <span class="tree">🌲</span>
+                    </div>
+                </div>
+
+                <!-- 游戏内容区域 -->
+                <div class="game-content">
+                    <!-- 关卡信息 -->
+                    <div class="level-info">
+                        <h2 id="game-title">物候问答</h2>
+                        <p id="game-description" class="subtitle">选择正确的物候现象与节气对应</p>
+                    </div>
+
+                    <!-- 选择题游戏模块 -->
+                    <div id="quiz-module" class="game-module">
+                        <div class="question-container">
+                            <div class="question-progress">
+                                <span>问题</span>
+                                <span id="quiz-current">1</span>
+                                <span>/</span>
+                                <span id="quiz-total">3</span>
+                            </div>
+                            <div class="question-card hand-drawn-card">
+                                <p id="quiz-question" class="question-text">以下哪个物候现象属于立春？</p>
+                                <div id="quiz-options" class="options-container">
+                                    <!-- 选项将动态生成 -->
+                                </div>
+                                <div id="quiz-feedback" class="feedback">
+                                    <!-- 反馈信息 -->
+                                </div>
+                            </div>
+                        </div>
+                        <button id="quiz-next" class="btn-primary hand-drawn-btn hidden">
+                            下一题 →
+                        </button>
+                    </div>
+
+                    <!-- 拖拽匹配游戏模块 -->
+                    <div id="matching-module" class="game-module hidden">
+                        <div class="matching-container">
+                            <div class="matching-info">
+                                <p class="instruction">将左侧的节气与右侧的民俗活动进行匹配</p>
+                                <div class="match-progress">
+                                    <span>已匹配: </span>
+                                    <span id="match-count">0</span>
+                                    <span>/</span>
+                                    <span id="match-total">4</span>
+                                </div>
+                            </div>
+                            <div class="matching-area">
+                                <div id="left-items" class="items-container left-column">
+                                    <h4>节气</h4>
+                                    <!-- 左侧可拖拽项 -->
+                                </div>
+                                <div class="matching-arrows">
+                                    ↔️
+                                </div>
+                                <div id="right-items" class="items-container right-column">
+                                    <h4>民俗活动</h4>
+                                    <!-- 右侧目标项 -->
+                                </div>
+                            </div>
+                            <div id="matching-feedback" class="feedback">
+                                <!-- 匹配反馈 -->
+                            </div>
+                        </div>
+                        <button id="matching-next" class="btn-primary hand-drawn-btn hidden">
+                            下一关 →
+                        </button>
+                    </div>
+
+                    <!-- 诗词填空游戏模块 -->
+                    <div id="poetry-module" class="game-module hidden">
+                        <div class="poetry-container">
+                            <div class="poetry-info">
+                                <h3 id="poetry-title">春雪</h3>
+                                <p id="poetry-author" class="author">韩愈</p>
+                            </div>
+                            <div class="poetry-progress">
+                                <span>诗词</span>
+                                <span id="poetry-current">1</span>
+                                <span>/</span>
+                                <span id="poetry-total">2</span>
+                            </div>
+                            <div class="poem-display hand-drawn-card">
+                                <div id="poem-lines" class="poem-lines">
+                                    <!-- 诗词内容将动态生成 -->
+                                </div>
+                                <div id="blank-options" class="blank-options-container">
+                                    <p class="instruction">点击选择正确的字词填入空白处</p>
+                                    <div id="options-area" class="options-area">
+                                        <!-- 填空选项 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="poetry-feedback" class="feedback">
+                                <!-- 填空反馈 -->
+                            </div>
+                        </div>
+                        <button id="poetry-next" class="btn-primary hand-drawn-btn hidden">
+                            查看结果 →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 通关界面 -->
+        <div id="victory-screen" class="screen">
+            <div class="hand-drawn-border victory-container">
+                <div class="celebration">
+                    <span class="firework">🎆</span>
+                    <span class="firework">✨</span>
+                    <span class="firework">🎉</span>
+                    <span class="firework">🎊</span>
+                    <span class="firework">🎆</span>
+                </div>
+                
+                <h2 class="victory-title">🏆 探索完成！</h2>
+                
+                <div class="medal-award">
+                    <div id="awarded-medal" class="medal-display">
+                        <!-- 获得的勋章 -->
+                    </div>
+                    <h3 id="medal-name">青铜探索者</h3>
+                    <p id="medal-desc" class="description">完成简单难度三关</p>
+                </div>
+                
+                <div class="secret-message-container">
+                    <h4>📜 来自时光长河的密语</h4>
+                    <div id="secret-message" class="secret-message hand-drawn-card">
+                        <!-- 过关密语 -->
+                    </div>
+                </div>
+                
+                <div class="final-stats">
+                    <h4>📊 本次探索统计</h4>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span class="stat-value" id="final-score">0</span>
+                            <span class="stat-label">文化灵识</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="final-correct">0</span>
+                            <span class="stat-label">正确答案</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="final-difficulty">简单</span>
+                            <span class="stat-label">探索难度</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="victory-buttons">
+                    <button id="play-again" class="btn-primary hand-drawn-btn">
+                        🔄 再次挑战
+                    </button>
+                    <button id="back-to-menu" class="btn-secondary hand-drawn-btn">
+                        🏠 返回主菜单
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 模态框 -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-content hand-drawn-card">
+                <span id="modal-close" class="close-btn">&times;</span>
+                <h3 id="modal-title">提示</h3>
+                <p id="modal-message">消息内容</p>
+                <button id="modal-confirm" class="btn-primary hand-drawn-btn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
