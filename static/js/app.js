@@ -80,6 +80,11 @@ class SolarTermGame {
             targetScreen.classList.add('active');
             this.gameState.currentScreen = screenName;
         }
+        
+        if (screenName === 'difficulty') {
+            this.loadGameProgress();
+            this.updateMedalsDisplay();
+        }
     }
 
     async selectDifficulty(difficulty) {
@@ -478,6 +483,7 @@ class SolarTermGame {
 
     checkPoemAnswers(poem) {
         let allCorrect = true;
+        const wrongAnswers = [];
         
         poem.blanks.forEach((blank, index) => {
             const userAnswer = this.gameState.filledBlanks[index];
@@ -489,6 +495,17 @@ class SolarTermGame {
                 this.gameState.score += 20;
             } else {
                 blankElement.classList.add('incorrect');
+                blankElement.title = `正确答案：${blank.missingWord}`;
+                blankElement.textContent = blank.missingWord;
+                blankElement.classList.remove('incorrect');
+                blankElement.classList.add('correct');
+                
+                wrongAnswers.push({
+                    userAnswer: userAnswer,
+                    correctAnswer: blank.missingWord,
+                    position: index + 1
+                });
+                
                 allCorrect = false;
             }
         });
@@ -503,10 +520,15 @@ class SolarTermGame {
                 </div>
             `;
         } else {
+            let wrongDetails = wrongAnswers.map(w => 
+                `第${w.position}空：你的答案「${w.userAnswer}」，正确答案「${w.correctAnswer}」`
+            ).join('<br>');
+            
             document.getElementById('poetry-feedback').innerHTML = `
                 <div class="feedback incorrect">
                     <h4>❌ 部分错误</h4>
-                    <p>请查看红色标注的错误答案，绿色为正确答案。</p>
+                    <p><strong>已自动显示正确答案（绿色）：</strong></p>
+                    <p>${wrongDetails}</p>
                 </div>
             `;
         }

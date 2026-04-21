@@ -362,18 +362,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 20px 40px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 240, 230, 0.95) 100%);
     border-bottom: 3px solid #a08060;
     margin-bottom: 20px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .status-bar {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+#exit-game {
+    margin-left: 60px;
+    flex-shrink: 0;
 }
 
 .difficulty-badge {
