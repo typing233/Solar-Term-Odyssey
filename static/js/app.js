@@ -449,11 +449,6 @@ class SolarTermGame {
         };
         
         document.getElementById('current-difficulty').textContent = difficultyNames[difficulty];
-        document.getElementById('level-indicator').innerHTML = `
-            <span>关卡</span>
-            <span id="current-level">1</span>
-            <span>/4</span>
-        `;
         
         await this.loadLevelData();
         this.showScreen('game');
