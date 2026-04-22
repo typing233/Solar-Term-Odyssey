@@ -944,20 +944,24 @@ class SolarTermGame {
                 <div class="slot-label">第${index + 1}位</div>
             `;
             
-            const dot = slot.querySelector('.slot-dot');
-            dot.addEventListener('dragover', (e) => {
+            slot.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                dot.classList.add('slot-dragover');
+                slot.classList.add('slot-dragover');
             });
-            dot.addEventListener('dragleave', () => {
-                dot.classList.remove('slot-dragover');
+            slot.addEventListener('dragleave', (e) => {
+                if (!slot.contains(e.relatedTarget)) {
+                    slot.classList.remove('slot-dragover');
+                }
             });
-            dot.addEventListener('drop', (e) => {
+            slot.addEventListener('drop', (e) => {
                 e.preventDefault();
-                dot.classList.remove('slot-dragover');
+                slot.classList.remove('slot-dragover');
                 const termName = e.dataTransfer.getData('text/plain');
-                this.placeTerm(termName, index);
+                if (termName) {
+                    this.placeTerm(termName, index);
+                }
             });
+            const dot = slot.querySelector('.slot-dot');
             dot.addEventListener('click', () => {
                 this.showTermDetail(term);
             });
