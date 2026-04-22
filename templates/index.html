@@ -70,10 +70,43 @@
                     </div>
                 </div>
                 
-                <div class="progress-info">
+                <div class="progress-tabs">
+                    <button class="tab-btn active" data-tab="medals">🏅 勋章</button>
+                    <button class="tab-btn" data-tab="achievements">🏆 成就</button>
+                    <button class="tab-btn" data-tab="stats">📊 统计</button>
+                    <button class="tab-btn" data-tab="leaderboard">🏁 排行榜</button>
+                </div>
+
+                <div class="tab-content active" id="tab-medals">
                     <h3>📊 我的探索进度</h3>
                     <div id="medals-display" class="medals-display">
                         <!-- 已获得勋章将动态显示 -->
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="tab-achievements">
+                    <h3>🏆 成就列表</h3>
+                    <div id="achievements-display" class="achievements-display">
+                        <!-- 成就将动态显示 -->
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="tab-stats">
+                    <h3>📊 进度统计</h3>
+                    <div id="stats-display" class="stats-display">
+                        <!-- 统计将动态显示 -->
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="tab-leaderboard">
+                    <h3>🏁 排行榜</h3>
+                    <div class="leaderboard-difficulty-selector">
+                        <button class="diff-btn active" data-diff="easy">简单</button>
+                        <button class="diff-btn" data-diff="medium">难度升级</button>
+                        <button class="diff-btn" data-diff="hard">超级难</button>
+                    </div>
+                    <div id="leaderboard-display" class="leaderboard-display">
+                        <!-- 排行榜将动态显示 -->
                     </div>
                 </div>
                 
@@ -219,6 +252,66 @@
                             </div>
                         </div>
                         <button id="poetry-next" class="btn-primary hand-drawn-btn hidden">
+                            下一关 →
+                        </button>
+                    </div>
+
+                    <div id="timeline-module" class="game-module hidden">
+                        <div class="timeline-container">
+                            <div class="timeline-info">
+                                <p class="instruction">从下方节气池中拖拽节气到时间线轴的正确位置</p>
+                                <div class="timeline-progress">
+                                    <span>已放置: </span>
+                                    <span id="timeline-count">0</span>
+                                    <span>/</span>
+                                    <span id="timeline-total">6</span>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-axis hand-drawn-card">
+                                <h4>📅 时间线轴</h4>
+                                <div id="timeline-slots" class="timeline-slots">
+                                    <!-- 时间线槽位将动态生成 -->
+                                </div>
+                            </div>
+
+                            <div class="solar-terms-pool hand-drawn-card">
+                                <h4>🌿 节气池</h4>
+                                <p class="instruction">拖拽以下节气到时间线上</p>
+                                <div id="solar-terms-items" class="solar-terms-items">
+                                    <!-- 节气项将动态生成 -->
+                                </div>
+                            </div>
+
+                            <div id="timeline-feedback" class="feedback">
+                                <!-- 时间线反馈 -->
+                            </div>
+
+                            <div id="term-detail-modal" class="term-detail-modal hidden">
+                                <div class="term-detail-content hand-drawn-card">
+                                    <span id="term-detail-close" class="close-btn">&times;</span>
+                                    <h4 id="term-detail-name">节气名称</h4>
+                                    <p id="term-detail-date" class="term-detail-date">日期</p>
+                                    <div class="term-detail-section">
+                                        <h5>📖 描述</h5>
+                                        <p id="term-detail-desc" class="term-detail-text">描述内容</p>
+                                    </div>
+                                    <div class="term-detail-section">
+                                        <h5>🐛 物候现象</h5>
+                                        <div id="term-detail-phenology" class="term-detail-tags">
+                                            <!-- 物候标签 -->
+                                        </div>
+                                    </div>
+                                    <div class="term-detail-section">
+                                        <h5>🎉 传统习俗</h5>
+                                        <div id="term-detail-customs" class="term-detail-tags">
+                                            <!-- 习俗标签 -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="timeline-next" class="btn-primary hand-drawn-btn hidden">
                             查看结果 →
                         </button>
                     </div>
@@ -269,6 +362,13 @@
                             <span class="stat-value" id="final-difficulty">简单</span>
                             <span class="stat-label">探索难度</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="victory-leaderboard">
+                    <h4>🏁 查看排行榜</h4>
+                    <div id="victory-leaderboard-display" class="victory-leaderboard-display">
+                        <!-- 排行榜将动态显示 -->
                     </div>
                 </div>
                 
