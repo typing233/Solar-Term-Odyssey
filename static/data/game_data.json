@@ -393,6 +393,64 @@
     "medium": "恭喜你在 {date} 完成了「难度升级」的挑战！\n\n你获得了「{medal}」勋章。\n\n你的智慧和毅力令人敬佩！\n你已经掌握了更多关于二十四节气的知识，\n对中国传统文化有了更深的理解。\n\n黄金传承人的称号正在向你招手！\n\n——来自时光长河的祝福",
     "hard": "恭喜你在 {date} 完成了「超级难」的终极挑战！\n\n你获得了「{medal}」勋章。\n\n你是真正的文化传承者！\n你已经掌握了二十四节气的精髓，\n对中国传统文化有着深刻的理解和热爱。\n\n愿你将这份文化智慧传承下去，\n让更多人了解和喜爱中华传统文化！\n\n——来自时光长河的祝福"
   },
+  "achievements": [
+    {
+      "id": "first_win",
+      "name": "初次探索者",
+      "description": "首次完成任意难度的所有关卡",
+      "icon": "🌱",
+      "unlockCondition": {"type": "totalWins", "value": 1}
+    },
+    {
+      "id": "bronze_master",
+      "name": "青铜大师",
+      "description": "在简单难度下累计获得500分文化灵识",
+      "icon": "🥉",
+      "unlockCondition": {"type": "totalScore", "difficulty": "easy", "value": 500}
+    },
+    {
+      "id": "silver_master",
+      "name": "白银大师",
+      "description": "在难度升级下累计获得1000分文化灵识",
+      "icon": "🥈",
+      "unlockCondition": {"type": "totalScore", "difficulty": "medium", "value": 1000}
+    },
+    {
+      "id": "gold_master",
+      "name": "黄金大师",
+      "description": "在超级难下累计获得2000分文化灵识",
+      "icon": "🥇",
+      "unlockCondition": {"type": "totalScore", "difficulty": "hard", "value": 2000}
+    },
+    {
+      "id": "perfect_streak",
+      "name": "连击达人",
+      "description": "在任意一局中达成10连击",
+      "icon": "🔥",
+      "unlockCondition": {"type": "maxStreak", "value": 10}
+    },
+    {
+      "id": "all_medals",
+      "name": "全勋章收藏家",
+      "description": "获得所有三种难度的勋章",
+      "icon": "🏆",
+      "unlockCondition": {"type": "allMedals"}
+    },
+    {
+      "id": "timeline_master",
+      "name": "时间线大师",
+      "description": "完美完成时间线关卡（全部正确）",
+      "icon": "⏳",
+      "unlockCondition": {"type": "timelinePerfect"}
+    },
+    {
+      "id": "speed_demon",
+      "name": "速度恶魔",
+      "description": "在3分钟内完成任意难度的所有关卡",
+      "icon": "⚡",
+      "unlockCondition": {"type": "fastCompletion", "value": 180}
+    }
+  ],
   "solar_terms": [
     {
       "name": "立春",
